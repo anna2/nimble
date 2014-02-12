@@ -1,28 +1,30 @@
 # A DSL for mapping routes to controller actions
-require_relative './test_app'
+require_relative './main'
 
-App = TestApp.new
+class App < Nimble::Main
 
-App.get '/' do
-  "Hello world"
+  get '/' do
+    "Hello world"
+  end
+
+  get '/happy' do
+    happy
+  end
+
+  post '/params' do |arg|
+    greet(arg['name'])
+  end
+
+  # get '/view' do
+  #   erb :view
+  # end
+
+  # App.put '/' do
+  #   #should upload a new file
+  # end
+
+  # App.delete '/' do
+
+  # end
+
 end
-
-App.get '/happy' do
-  App.happy
-end
-
-App.post '/params' do |arg|
-  App.greet(arg['name'])
-end
-
-# App.get '/view' do
-#   App.erb :view
-# end
-
-# App.put '/' do
-#   #should upload a new file
-# end
-
-# App.delete '/' do
-
-# end
