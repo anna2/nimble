@@ -1,4 +1,3 @@
-# A DSL for mapping routes to controller actions
 require_relative './main'
 
 class App < Nimble::Main
