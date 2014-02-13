@@ -7,7 +7,7 @@ class App < Nimble::Main
   end
 
   get '/happy' do
-    happy
+   erb :happy
   end
 
   post '/params' do |arg|

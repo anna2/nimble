@@ -1,4 +1,6 @@
 require 'rack'
+require 'tilt'
+require 'erb'
 
 module Nimble
 
@@ -25,7 +27,9 @@ module Nimble
       end
 
       def erb(view_name)
-        File.dirname(__FILE__) + view_name.to_s + '.erb'
+        path = ::File.join("views", "#{view_name.to_s}.erb")
+        template = Tilt.new(path)
+        template.render
       end
 
       def call(env)
