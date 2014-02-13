@@ -2,16 +2,16 @@ require_relative './main'
 
 class App < Nimble::Main
 
-  get '/' do
-    "Hello world"
+  get '/' do |params|
+    "Hello world #{params["p"]}"
   end
 
   get '/happy' do
    erb :happy
   end
 
-  post '/params' do |arg|
-    greet(arg['name'])
+  post '/happy' do |params|
+    erb :greet, params
   end
 
   # get '/view' do

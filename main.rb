@@ -26,10 +26,10 @@ module Nimble
         @@routes['DELETE'][route] = block
       end
 
-      def erb(view_name)
-        path = ::File.join("views", "#{view_name.to_s}.erb")
+      def erb(view_name, locals = {})
+        path = ::File.join("views", "#{view_name.to_s}.html.erb")
         template = Tilt.new(path)
-        template.render
+        template.render(nil, locals)
       end
 
       def call(env)
