@@ -11,7 +11,6 @@ module Nimble
 
       def get(route, &block)
         @@routes['GET'][route] = block
-        puts "#{self.routes}"
       end
 
       def post(route, &block)

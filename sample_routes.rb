@@ -2,8 +2,8 @@ require_relative './main'
 
 class App < Nimble::Main
 
-  get '/' do |params|
-    "Hello world #{params["p"]}"
+  get '/' do
+    "Hello world"
   end
 
   get '/happy' do
@@ -14,16 +14,22 @@ class App < Nimble::Main
     erb :greet, params
   end
 
-  # get '/view' do
-  #   erb :view
-  # end
+  get '/helper' do
+    "Display the #{test_helper}"
+  end
 
-  # App.put '/' do
+  # put '/' do
   #   #should upload a new file
   # end
 
-  # App.delete '/' do
+  # delete '/' do
 
   # end
 
+  #helpers need to be defined as class methods
+  def self.test_helper
+    "helper text"
+  end
+
 end
+
