@@ -2,6 +2,7 @@ require_relative './main'
 
 class App < Nimble::Main
 
+
   get '/' do
     "Hello world"
   end
@@ -18,13 +19,22 @@ class App < Nimble::Main
     "Display the #{test_helper}"
   end
 
-  # put '/' do
-  #   #should upload a new file
-  # end
+  get '/set_session' do
+    session[:id] = 4
+    "Session set: #{session[:id]}"
+  end
 
-  # delete '/' do
+  get '/read_session' do
+    "The session id is #{session[:id]}"
+  end
 
-  # end
+  put '/put' do
+    #should replace a resource
+  end
+
+  delete '/delete' do
+    #delete something
+  end
 
   #helpers need to be defined as class methods
   def self.test_helper

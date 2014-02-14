@@ -6,6 +6,7 @@ module Nimble
 
   class Main
     @@routes = Hash.new { |hash, key| hash[key] = Hash.new }
+
     class << self
       attr_accessor :routes  
 
@@ -31,20 +32,25 @@ module Nimble
         template.render(nil, locals)
       end
 
+      def session
+        @request.session
+      end
+
       def call(env)
-        request = Rack::Request.new(env)
-        block = @@routes[request.request_method][request.path_info]
+        @env = env
+        @request = Rack::Request.new(env)
+        block = @@routes[@request.request_method][@request.path_info]
         if block
-          puts "Block: #{block}"
-          puts "PARAMS: #{request.params}"
-          params = request.params
-          response = block.call(params)
-          [200, {}, [response]]
+          @params = @request.params
+          @response = block.call(@params)
+          [200, {}, [@response]]
         else
           [404, {}, ["Page not found"]]
         end
       end
     end
   end
+
+
 
 end
