@@ -11,6 +11,10 @@ class App < Nimble::Main
    erb :happy
   end
 
+  get '/redirect' do
+    redirect_to('/happy')
+  end
+
   post '/happy' do
     erb :greet, params
   end
@@ -20,7 +24,7 @@ class App < Nimble::Main
   end
 
   get '/set_session' do
-    session[:id] = 4
+    session[:id] = 5
     "Session set: #{session[:id]}"
   end
 

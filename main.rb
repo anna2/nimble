@@ -40,14 +40,22 @@ module Nimble
         @params
       end
 
+      def redirect_to(path)
+        @response['Location'] = path
+        @response.status = 303
+        "Redirect!"
+      end
+
       def call(env)
-        # @env = env
         @request = Rack::Request.new(env)
         block = @@routes[@request.request_method][@request.path_info]
         if block
           @params = @request.params
-          @response = block.call
-          [200, {}, [@response]]
+          @response = Rack::Response.new
+          @response.body = [block.call]
+          @response.header ||= {}
+          @response.status ||= 200
+          @response.finish
         else
           [404, {}, ["Page not found"]]
         end
