@@ -4,14 +4,14 @@ class App < Nimble::Main
 
 
   get '/' do
-    "Hello world"
+    "Hello world, #{params['id']}"
   end
 
   get '/happy' do
    erb :happy
   end
 
-  post '/happy' do |params|
+  post '/happy' do
     erb :greet, params
   end
 

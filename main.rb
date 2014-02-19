@@ -36,13 +36,17 @@ module Nimble
         @request.session
       end
 
+      def params
+        @params
+      end
+
       def call(env)
-        @env = env
+        # @env = env
         @request = Rack::Request.new(env)
         block = @@routes[@request.request_method][@request.path_info]
         if block
           @params = @request.params
-          @response = block.call(@params)
+          @response = block.call
           [200, {}, [@response]]
         else
           [404, {}, ["Page not found"]]
