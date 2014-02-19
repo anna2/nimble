@@ -15,7 +15,7 @@ use Rack::Session::Cookie, :secret => 'change_me'
 run App
 ```
 
- Nimble will look for erb files in ProjectName>/views/ by default. Use ```rackup``` from the command line to see your app running locally.
+ Nimble will look for html.erb files in ProjectName/views/ by default. Use ```rackup``` from the command line to see your app running locally.
 
 ##Sample Usage:
 
@@ -78,3 +78,4 @@ class App < Nimble::Main
 
 end
 ```
+Enjoy!
