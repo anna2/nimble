@@ -2,25 +2,28 @@
 
 Nimble is a lightweight Ruby web framework build on top of Rack. To get started, ```gem install nimble_framework```. Then:
 
-1. Create <appname>.rb and ```require 'nimble_framework'```. Then create an app class that inherits from Nimble::Main and start declaring routes.
+1. Create a .rb file and ```require 'nimble_framework'```. Then create an app class that inherits from Nimble::Main and start declaring routes.
 
 
-2. Create a config.ru that requires your <appname>.rb file and then type run <AppName>.
+2. Create a config.ru that requires your .rb file and then type ```run App```. But, substituting for App the name of your app class. An example:
 
-```#config.ru
+```
+#config.ru
 
 require './sample_routes.rb'
 use Rack::Session::Cookie, :secret => 'change_me'
-run App```
+run App
+```
 
 
-3. Nimble will look for erb files in <projectname>/views/ by default.
+3. Nimble will look for erb files in ProjectName>/views/ by default.
 
 4. Use ```rackup``` from the command line to see your app running locally.
 
 ##Sample Usage:
 
-```require 'nimble_framework'
+```
+require 'nimble_framework'
 
 class App < Nimble::Main
 
@@ -72,4 +75,5 @@ class App < Nimble::Main
     "helper text"
   end
 
-end```
+end
+```
